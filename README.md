@@ -1,4 +1,4 @@
 thesisWindErode
 ===============
 
-Wind Erosion simulation/
+Wind Erosion simulation. Processing in Java through eclipse.
