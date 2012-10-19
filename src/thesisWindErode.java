@@ -7,9 +7,10 @@ public class thesisWindErode extends processing.core.PApplet {
 	private static final long serialVersionUID = 1L;
 
 	// General
-	ToxiclibsSupport gfx;
+	public ToxiclibsSupport gfx;
 	PeasyCam nav; // cam
 	PFont font;
+	grid grid;
 
 
 	// Boolean
@@ -26,6 +27,8 @@ public class thesisWindErode extends processing.core.PApplet {
 
 		nav = new PeasyCam(this, 500);
 		nav.setMinimumDistance(-50);
+		
+		grid = new grid(10, 10, 25, 25, this);
 
 	}
 	
@@ -38,6 +41,8 @@ public class thesisWindErode extends processing.core.PApplet {
 
 		if (!paused)
 			update();
+		
+		grid.drawGrid();
 
 
 		nav.beginHUD();
