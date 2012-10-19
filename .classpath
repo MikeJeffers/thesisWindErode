@@ -8,8 +8,16 @@
 	<classpathentry kind="lib" path="libs/toxiclibscore.jar"/>
 	<classpathentry kind="lib" path="libs/verletphysics.jar"/>
 	<classpathentry kind="lib" path="libs/PEASY/peasycam.jar"/>
-	<classpathentry kind="lib" path="libs/OPENGL/gluegen-rt.jar" sourcepath="libs/OPENGL/src"/>
-	<classpathentry kind="lib" path="libs/OPENGL/jogl.jar" sourcepath="libs/OPENGL/src"/>
+	<classpathentry kind="lib" path="libs/OPENGL/gluegen-rt.jar" sourcepath="libs/OPENGL/src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="thesisWindErode/libs/OPENGL/src"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/OPENGL/jogl.jar" sourcepath="libs/OPENGL/src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="thesisWindErode/libs/OPENGL/src"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="libs/OPENGL/opengl.jar" sourcepath="libs/OPENGL/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
