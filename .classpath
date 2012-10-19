@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/core.jar"/>
+	<classpathentry kind="lib" path="libs/controlP5.jar"/>
+	<classpathentry kind="lib" path="libs/toxiclibs_p5.jar"/>
+	<classpathentry kind="lib" path="libs/toxiclibscore.jar"/>
+	<classpathentry kind="lib" path="libs/verletphysics.jar"/>
+	<classpathentry kind="lib" path="libs/PEASY/peasycam.jar"/>
+	<classpathentry kind="lib" path="libs/OPENGL/gluegen-rt.jar" sourcepath="libs/OPENGL/src"/>
+	<classpathentry kind="lib" path="libs/OPENGL/jogl.jar" sourcepath="libs/OPENGL/src"/>
+	<classpathentry kind="lib" path="libs/OPENGL/opengl.jar" sourcepath="libs/OPENGL/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
