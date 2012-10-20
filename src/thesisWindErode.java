@@ -1,21 +1,24 @@
 import peasy.PeasyCam;
 import processing.core.*;
+import toxi.geom.*;
 import toxi.processing.ToxiclibsSupport;
-
 
 public class thesisWindErode extends processing.core.PApplet {
 	private static final long serialVersionUID = 1L;
 
 	// General
 	public ToxiclibsSupport gfx;
-	PeasyCam nav; // cam
+	PeasyCam nav;
 	PFont font;
 	grid grid;
 
+	pointStack tree;
+	int TREE_SIZE = 500;
 
 	// Boolean
 	boolean paused = false;
-	
+	boolean drawTree = true;
+	boolean drawGrid = true;
 
 	public void setup() {
 		size(1280, 720, OPENGL);
@@ -27,11 +30,14 @@ public class thesisWindErode extends processing.core.PApplet {
 
 		nav = new PeasyCam(this, 500);
 		nav.setMinimumDistance(-50);
-		
+
 		grid = new grid(10, 10, 25, 25, this);
 
+		tree = new pointStack(new Vec3D(-1, -1, 0).scaleSelf(TREE_SIZE / 2), TREE_SIZE, this);
+		tree.populate(13, 7, 20, 10, 10, 10);
+
 	}
-	
+
 	public void update() {
 
 	}
@@ -41,14 +47,34 @@ public class thesisWindErode extends processing.core.PApplet {
 
 		if (!paused)
 			update();
-		
-		grid.drawGrid();
 
+		if (drawGrid)
+			grid.drawGrid();
+
+		if (drawTree)
+			tree.draw();
+		
+		tree.drawPoints();
 
 		nav.beginHUD();
 		fill(0);
 		text(frameRate, 20, 20);
 		nav.endHUD();
 	}
-	
+
+	public void keyPressed() {
+		switch (key) {
+		case ' ':
+			paused = !paused;
+			break;
+		case 't':
+			drawTree = !drawTree;
+			break;
+
+		case 'g':
+			drawGrid = !drawGrid;
+			break;
+		}
+	}
+
 }
