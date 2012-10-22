@@ -1,15 +1,30 @@
+import java.util.ArrayList;
+
 import toxi.geom.*;
 
 public class pointStack extends PointOctree {
 	thesisWindErode p;
 	int density = 10;
-	int RAD = 5;
+	int RAD = 10;
 	int size;
 
 	public pointStack(Vec3D c, float s, thesisWindErode parent) {
 		super(c, s);
 		p = parent;
 		size = (int) s;
+	}
+	
+	void update(){
+		
+		for(force f : p.wind.forces){
+			ArrayList<Vec3D> pts = this.getPointsWithinSphere(f.loc, RAD*2);
+			if(pts == null) return;
+			for(Vec3D pt : pts){
+				this.remove(pt);
+			}
+			f.hits++;
+			if(f.hits >= f.weight) f.on = false; 
+		}
 	}
 
 	void draw() {

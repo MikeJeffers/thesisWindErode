@@ -13,6 +13,7 @@ public class thesisWindErode extends processing.core.PApplet {
 	grid grid;
 
 	pointStack tree;
+	emitter wind;
 	int TREE_SIZE = 500;
 
 	// Boolean
@@ -35,11 +36,14 @@ public class thesisWindErode extends processing.core.PApplet {
 
 		tree = new pointStack(new Vec3D(-1, -1, 0).scaleSelf(TREE_SIZE / 2), TREE_SIZE, this);
 		tree.populate(13, 7, 20, 10, 10, 10);
+		
+		wind = new emitter(new Vec3D(0,-1,0), new Vec3D(0, 300, 100), 25, this);
 
 	}
 
 	public void update() {
-
+		tree.update();
+		wind.update();
 	}
 
 	public void draw() {
@@ -55,6 +59,8 @@ public class thesisWindErode extends processing.core.PApplet {
 			tree.draw();
 		
 		tree.drawPoints();
+		
+		wind.draw();
 
 		nav.beginHUD();
 		fill(0);
