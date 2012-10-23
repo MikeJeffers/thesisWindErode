@@ -64,7 +64,7 @@ public class pointStack extends PointOctree {
 		p.stroke(0);
 		p.fill(255,100,0);
 		for(Vec3D v : this.getPoints()){
-			p.gfx.box(new AABB(v, RAD));
+			p.gfx.box(new AABB(v, RAD/2));
 		}
 	}
 
