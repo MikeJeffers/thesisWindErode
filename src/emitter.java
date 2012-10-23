@@ -14,7 +14,7 @@ public class emitter {
 		p = parent;
 		range = r;
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 25; i++) {
 			forces.add(new force(loc.copy().jitter(50), dir, 1, p));
 		}
 	}
