@@ -15,7 +15,7 @@ public class emitter {
 		range = r;
 
 		for (int i = 0; i < 25; i++) {
-			forces.add(new force(loc.copy().jitter(50), dir, 1, p));
+			forces.add(new force(loc.copy().jitter(50), dir.jitter(5), 1, p));
 		}
 	}
 
@@ -24,6 +24,7 @@ public class emitter {
 		for (force f : forces) {
 			f.update();
 			if(f.on == false) usedForces.add(f);
+			if(f.loc.distanceTo(loc) > 600) usedForces.add(f);
 		}
 		forces.removeAll(usedForces);
 	}
@@ -34,6 +35,12 @@ public class emitter {
 
 		for (force f : forces) {
 			f.draw();
+		}
+	}
+	
+	void addPts(int n){
+		for (int i = 0; i < n; i++) {
+			forces.add(new force(loc.copy().jitter(50), dir, 1, p));
 		}
 	}
 
