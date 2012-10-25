@@ -33,7 +33,7 @@ public class force {
 				idR = pt;
 			}
 		}
-		p.tree.remove(idR);
+		p.tree.removePt(idR);
 		this.hits++;
 		if(this.hits >= this.weight) this.on = false; 
 	}

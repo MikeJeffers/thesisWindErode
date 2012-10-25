@@ -1,6 +1,10 @@
+import java.util.List;
+import java.util.Vector;
+
 import toxi.geom.*;
 
 public class pointStack extends PointOctree {
+	Vector<Integer> vals = new Vector<Integer>();
 	thesisWindErode p;
 	int density = 10;
 	int RAD = 10;
@@ -45,16 +49,36 @@ public class pointStack extends PointOctree {
 			for (int j = 0; j < nY; j++) {
 				for (int k = 0; k < nZ; k++) {
 					this.addPoint(new Vec3D(x - (i * sX), y - (j * sY), k * sZ));
+					vals.add(255);
 				}
 			}
 		}
 	}
 	
+	void removePt(Vec3D v){
+		//get point id to remove it from a list of pts
+		List<Vec3D> pts = this.getPoints();
+		int ptID = 0;
+		for(int i = 0; i < pts.size(); i++){
+			if(pts.get(i)==v) {
+				ptID = i;
+				break;
+			}
+		}
+		this.remove(v);
+		vals.remove(ptID);
+		vals.set(vals.size()-1, 0);
+	}
+	
 	void drawPoints(){
 		p.stroke(0);
-		p.fill(255,100,0);
+		int i = 0;
 		for(Vec3D v : this.getPoints()){
+			
+			int col = vals.get(i);
+			p.fill(col,0,0);
 			p.gfx.box(new AABB(v, RAD/2));
+			i++;
 		}
 	}
 
