@@ -53,6 +53,7 @@ public class pointStack extends PointOctree {
 				}
 			}
 		}
+		vals.set(vals.size()-1, 0);
 	}
 	
 	void removePt(Vec3D v){
@@ -67,7 +68,7 @@ public class pointStack extends PointOctree {
 		}
 		this.remove(v);
 		vals.remove(ptID);
-		vals.set(vals.size()-1, 0);
+		
 	}
 	
 	void drawPoints(){
