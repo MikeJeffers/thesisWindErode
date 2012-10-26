@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
 import toxi.geom.*;
+import toxi.geom.mesh.Mesh3D;
+import toxi.geom.mesh.TriangleMesh;
+import toxi.geom.mesh.Vertex;
 
 public class pointStack extends PointOctree {
 	Vector<Integer> vals = new Vector<Integer>();
@@ -41,17 +46,29 @@ public class pointStack extends PointOctree {
 		}
 	}
 
-	void populate(int nX, int nY, int nZ, int sX, int sY, int sZ) {
-		float x = (sX * nX) / 2;
-		float y = (sY * nY) / 2;
-
-		for (int i = 0; i < nX; i++) {
-			for (int j = 0; j < nY; j++) {
-				for (int k = 0; k < nZ; k++) {
-					this.addPoint(new Vec3D(x - (i * sX), y - (j * sY), k * sZ));
-					vals.add(255);
-				}
-			}
+	 	void populate(int nX, int nY, int nZ, int sX, int sY, int sZ) {
+		 		float x = (sX * nX) / 2;
+		 		float y = (sY * nY) / 2;
+		 
+		 		for (int i = 0; i < nX; i++) {
+		 			for (int j = 0; j < nY; j++) {
+						for (int k = 0; k < nZ; k++) {
+		 					this.addPoint(new Vec3D(x - (i * sX), y - (j * sY), k * sZ));
+		 					vals.add(255);
+		 				}
+		 			}
+		 		}
+	 	}
+	
+	
+	void populateFromFile(ArrayList<Vec3D> _pts) {
+		ArrayList<Vec3D> inpt = _pts;
+		
+		for(int i=0; i<inpt.size(); i++){
+			
+		
+		this.addPoint(inpt.get(i));
+		vals.add(255);
 		}
 		vals.set(vals.size()-1, 0);
 	}

@@ -1,6 +1,11 @@
+import java.io.File;
+import java.util.ArrayList;
+
 import peasy.PeasyCam;
 import processing.core.*;
 import toxi.geom.*;
+import toxi.geom.mesh.STLReader;
+import toxi.geom.mesh.TriangleMesh;
 import toxi.processing.ToxiclibsSupport;
 
 public class thesisWindErode extends processing.core.PApplet {
@@ -11,7 +16,7 @@ public class thesisWindErode extends processing.core.PApplet {
 	PeasyCam nav;
 	PFont font;
 	grid grid;
-
+	ArrayList<Vec3D> importPts = new ArrayList<Vec3D>();
 	pointStack tree;
 	emitter wind;
 	int TREE_SIZE = 500;
@@ -25,6 +30,33 @@ public class thesisWindErode extends processing.core.PApplet {
 		size(1280, 720, OPENGL);
 		smooth();
 		frameRate(30);
+		
+		File f = new File("");
+		try {
+			
+		f = new File(dataPath("import.txt"));
+		
+		} catch (NullPointerException ex) {
+		println("File: " + " could not be found.");
+		//return false;
+		}
+
+		String[] strLines = loadStrings(f.getAbsolutePath());
+		
+		//String[] strLines = loadStrings(dataPath("import.txt"));
+		
+		  for(int i = 0; i < strLines.length; i++){
+			  String clean = strLines[i].substring(1, strLines[i].length()-1);
+			  
+			    String[] splitToken = clean.split(", ");      
+			    
+			    float xx = parseFloat(splitToken[0]);                     
+			    float yy = parseFloat(splitToken[1]);                     
+			    float zz = parseFloat(splitToken[2]);  
+			    Vec3D ptt = new Vec3D (xx, yy, zz);
+			    importPts.add(ptt);             
+			  }
+		
 
 		font = createFont("Arial Bold", 48);
 		gfx = new ToxiclibsSupport(this);
@@ -35,10 +67,11 @@ public class thesisWindErode extends processing.core.PApplet {
 		grid = new grid(10, 10, 25, 25, this);
 
 		tree = new pointStack(new Vec3D(-1, -1, 0).scaleSelf(TREE_SIZE / 2), TREE_SIZE, this);
-		tree.populate(13, 7, 20, 10, 10, 10);
+		tree.populate(10, 10, 50, 5, 5, 5);
 		
 		wind = new emitter(new Vec3D(25,-300,50), new Vec3D(-50, 300, 100), 25, this);
-
+		//TriangleMesh tmesh = (TriangleMesh) new STLReader().loadBinary(sketchPath("input.stl"), STLReader.TRIANGLEMESH);
+		tree.populateFromFile(importPts);
 	}
 
 	public void update() {
